@@ -24,16 +24,16 @@
 | user               | references | null: false, foreign_key: true |
 | name               | string     | null: false                    |
 | text               | text       | null: false                    |
-| category_id        | string     | null: false                    |
-| condition_id       | string     | null: false                    |
-| shipping_cost_id   | string     | null: false                    |
-| shipping_area_id   | string     | null: false                    |
-| shipping_day_id    | string     | null: false                    |
+| category_id        | integer    | null: false                    |
+| condition_id       | integer    | null: false                    |
+| shipping_cost_id   | integer    | null: false                    |
+| shipping_area_id   | integer    | null: false                    |
+| shipping_day_id    | integer    | null: false                    |
 | price              | integer    | null: false                    |
 
 # Association
 - belongs_to :user
-- hus_one :buy
+- has_one :buy
 
 
 # buys テーブル
@@ -45,8 +45,8 @@
 
 # Association
 - belongs_to :user
-- belongs_to :item
-- belongs_to :address
+- blongs_to :item
+- has_one :address
 
 
 # addresses テーブル
@@ -55,11 +55,11 @@
 | ------------------ | ---------- | ------------------------------ |  
 | buy                | references | null: false, foreign_key: true |
 | zip_code           | string     | null: false                    |
-| prefecture_id      | string     | null: false                    |
+| shipping_area_id   | integer    | null: false                    |
 | city               | string     | null: false                    |
 | address            | string     | null: false                    |
-| building_name      | string     | null: false                    |
+| building_name      | string     |                                | 
 | phone_number       | string     | null: false                    |
-
+ 
 # Association
 - belongs_to :buy
