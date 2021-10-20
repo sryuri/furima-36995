@@ -67,12 +67,12 @@ RSpec.describe Item, type: :model do
       expect(@item.errors.full_messages).to include("Price is not a number")
     end
     it 'priceが300円以下では登録ができない' do
-      @item.price = '299'
+      @item.price = 299
       @item.valid?
       expect(@item.errors.full_messages).to include("Price must be greater than 299")
     end
     it 'priceが10000000円以上では登録ができない' do
-      @item.price = '10000000'
+      @item.price = 10000000
       @item.valid?
       expect(@item.errors.full_messages).to include("Price must be less than 10000000")
     end
@@ -87,27 +87,27 @@ RSpec.describe Item, type: :model do
       expect(@item.errors.full_messages).to include("User must exist")
     end
     it 'category_idに1が選択されている場合は出品できない' do
-      @item.category_id = '1'
+      @item.category_id = 1
       @item.valid?
       expect(@item.errors.full_messages).to include("Category can't be blank")
     end
     it 'condition_idに1が選択されている場合は出品できない' do
-      @item.condition_id = '1'
+      @item.condition_id = 1
       @item.valid?
       expect(@item.errors.full_messages).to include("Condition can't be blank")
     end
     it 'shipping_cost_idに1が選択されている場合は出品できない' do
-      @item.shipping_cost_id = '1'
+      @item.shipping_cost_id = 1
       @item.valid?
       expect(@item.errors.full_messages).to include("Shipping cost can't be blank")
     end 
     it 'shipping_area_idに1が選択されている場合は出品できない' do
-      @item.shipping_area_id = '1'
+      @item.shipping_area_id = 1
       @item.valid?
       expect(@item.errors.full_messages).to include("Shipping area can't be blank")
     end
     it 'shipping_day_id に1が選択されている場合は出品できない' do
-      @item.shipping_day_id  = '1'
+      @item.shipping_day_id  = 1
       @item.valid?
       expect(@item.errors.full_messages).to include("Shipping day can't be blank")
     end   
