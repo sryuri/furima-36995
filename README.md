@@ -45,7 +45,7 @@
 
 # Association
 - belongs_to :user
-- blongs_to :item
+- belongs_to :item
 - has_one :address
 
 
