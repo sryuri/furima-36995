@@ -15,6 +15,8 @@ class BuyAddress
 
     def save   
         buy = Buy.create(item_id: item_id, user_id: user_id)
+        binding.pry
+
         Address.create(buy_id: buy.id, zip_code: zip_code, shipping_area_id: shipping_area_id, city: city, address: address, building_name: building_name, phone_number: phone_number)
     end
 

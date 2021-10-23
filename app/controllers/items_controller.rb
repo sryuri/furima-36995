@@ -5,6 +5,7 @@ class ItemsController < ApplicationController
     
     def index
         @items = Item.order("created_at DESC")
+        
     end
 
     def new
@@ -26,8 +27,11 @@ class ItemsController < ApplicationController
 
     def edit
         unless @item.user_id == current_user.id
-            redirect_to action: :index
+            redirect_to root_path
         end
+        if  @item.buy.present?
+            redirect_to root_path
+        end  
     end
 
     def update
@@ -48,7 +52,6 @@ class ItemsController < ApplicationController
         end    
     end
         
-
     
     private
 
