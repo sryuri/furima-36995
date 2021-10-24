@@ -38,46 +38,52 @@ RSpec.describe BuyAddress, type: :model do
             @buy_address.valid?
             expect(@buy_address.errors.full_messages).to include("Shipping area can't be blank")
         end
-        it 'cityが空だと保存できないこと' do
+        it 'cityが空だと保存できない' do
             @buy_address.city = ''
             @buy_address.valid?
             expect(@buy_address.errors.full_messages).to include("City can't be blank")
         end
-        it 'addressが空だと保存できないこと' do
+        it 'addressが空だと保存できない' do
             @buy_address.address = ''
             @buy_address.valid?
             expect(@buy_address.errors.full_messages).to include("Address can't be blank")
         end
-        it 'phone_numberが空だと保存できないこと' do
+        it 'phone_numberが空だと保存できない' do
             @buy_address.phone_number = ''
             @buy_address.valid?
             expect(@buy_address.errors.full_messages).to include("Phone number can't be blank", "Phone number is invalid")
         end
-        it 'phone_numberが12桁以上の半角数値だと保存できないこと' do
+        it 'phone_numberが12桁以上の半角数値だと保存できない' do
             @buy_address.phone_number = '123451234567'
             @buy_address.valid?
             expect(@buy_address.errors.full_messages).to include("Phone number is invalid")
         end
-        it 'phone_numberが9桁未満の半角数値でないと保存できないこと' do
+        it 'phone_numberが9桁未満の半角数値でないと保存できない' do
             @buy_address.phone_number = '123456789'
             @buy_address.valid?
             expect(@buy_address.errors.full_messages).to include("Phone number is invalid")
         end
-        it 'userが紐付いていないと保存できないこと' do
+        it 'userが紐付いていないと保存できない' do
             @buy_address.user_id = nil
             @buy_address.valid?
             expect(@buy_address.errors.full_messages).to include("User can't be blank")
         end    
-        it 'itemが紐付いていないと保存できないこと' do
+        it 'itemが紐付いていないと保存できない' do
             @buy_address.item_id = nil
             @buy_address.valid?
             expect(@buy_address.errors.full_messages).to include("Item can't be blank")
         end  
-        it "tokenが空では登録できないこと" do
-            @buy_address.token = nil
+        it "shipping_area_id に「---」が選択されている場合は購入できない" do
+            @buy_address.shipping_area_id = 1
             @buy_address.valid?
-            expect(@buy_address.errors.full_messages).to include("Token can't be blank")
-          end   
+            expect(@buy_address.errors.full_messages).to include("Shipping area can't be blank")
+        end   
+        it 'phone_numberに半角数字以外が含まれている場合は購入できない' do
+            @buy_address.phone_number = '0901234567あ'
+            @buy_address.valid?
+            expect(@buy_address.errors.full_messages).to include("Phone number is invalid")
+        end
+        
     end
   end 
 end
