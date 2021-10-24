@@ -6,7 +6,7 @@ class BuysController < ApplicationController
     def index
         @buy_address = BuyAddress.new
         if @item.user_id == current_user.id
-          redirect_to root_path
+          redirect_to root_path and return
         end 
         if  @item.buy.present?
           redirect_to root_path
