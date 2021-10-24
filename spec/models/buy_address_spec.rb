@@ -17,6 +17,9 @@ RSpec.describe BuyAddress, type: :model do
             @buy_address.building_name = ''
             expect(@buy_address).to be_valid
         end
+        it "tokenがあれば保存ができること" do
+            expect(@buy_address).to be_valid
+          end
     end
 
     context '内容に問題がある場合' do
@@ -69,7 +72,12 @@ RSpec.describe BuyAddress, type: :model do
             @buy_address.item_id = nil
             @buy_address.valid?
             expect(@buy_address.errors.full_messages).to include("Item can't be blank")
-        end      
+        end  
+        it "tokenが空では登録できないこと" do
+            @buy_address.token = nil
+            @buy_address.valid?
+            expect(@buy_address.errors.full_messages).to include("Token can't be blank")
+          end   
     end
   end 
 end
